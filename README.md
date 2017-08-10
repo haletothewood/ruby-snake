@@ -23,11 +23,13 @@ Windows Installation
 * Install [Gosu])(https://www.libgosu.org/ruby.html): `gem install gosu`
 
 Linux Installation
-* Instructions [here](https://github.com/gosu/gosu/wiki/Getting-Started-on-Linux) - check if you already have Ruby installed. You will need certain pacakges as well. 
+* Instructions [here](https://github.com/gosu/gosu/wiki/Getting-Started-on-Linux) - check if you already have Ruby installed. You will need certain pacakges as well.
 
 Run the Game!
 * Clone repo into directory of your choice.
 * ruby snake.rb
 
-
 Have fun!
+
+Resources:
+[Gosu tutorial](https://github.com/gosu/gosu/wiki/Ruby-Tutorial)
