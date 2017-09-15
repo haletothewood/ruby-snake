@@ -27,7 +27,7 @@ Linux Installation
 
 Run the Game!
 * Clone repo into directory of your choice.
-* ruby snake.rb
+* ruby game_window.rb
 
 Have fun!
 
