@@ -27,7 +27,7 @@ Linux Installation
 
 Run the Game!
 * Clone repo into directory of your choice.
-* ruby game_window.rb
+* ruby play.rb
 
 Have fun!
 

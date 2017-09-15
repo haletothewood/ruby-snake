@@ -1,33 +1,36 @@
-require 'gosu'
 require_relative 'snake'
 require_relative 'segment'
 require_relative 'apple'
 
+require 'gosu'
+
 class GameWindow < Gosu::Window
+
 	def initialize
-		super 640, 480, false
+		super 640, 480
 		self.caption = "Snake"
 		@snake = Snake.new(self)
 		@apple = Apple.new(self)
 		@score = 0
-
 		@text_object = Gosu::Font.new(self, 'Ubuntu Sans', 32)
-
 	end
 
 	def update
 
 		# Change directions, but don't allow doubling back
-		if button_down? Gosu::KbLeft and @snake.direction != "right"
+		if (button_down? Gosu::KbLeft) && (@snake.direction != "right")
 			@snake.direction = "left"
 		end
-		if button_down? Gosu::KbRight and @snake.direction != "left"
+
+		if (button_down? Gosu::KbRight) && (@snake.direction != "left")
 			@snake.direction = "right"
 		end
-		if button_down? Gosu::KbUp and @snake.direction != "down"
+
+		if (button_down? Gosu::KbUp) && (@snake.direction != "down")
 			@snake.direction = "up"
 		end
-		if button_down? Gosu::KbDown and @snake.direction != "up"
+
+		if (button_down? Gosu::KbDown) && (@snake.direction != "up")
 			@snake.direction = "down"
 		end
 
@@ -79,6 +82,3 @@ class GameWindow < Gosu::Window
 		end
 	end
 end
-
-window = GameWindow.new
-window.show

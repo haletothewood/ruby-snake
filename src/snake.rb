@@ -1,4 +1,3 @@
-
 class Snake
 
 attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
@@ -20,9 +19,7 @@ attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
 
 	def draw
 		# Draw the segments
-		@segments.each do |s|
-			s.draw
-		end
+		@segments.each { |s| s.draw }
 	end
 
 	def update_position
