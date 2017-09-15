@@ -6,6 +6,7 @@ require 'gosu'
 
 class GameWindow < Gosu::Window
 
+  # what does a game of snake always have?
 	def initialize
 		super 640, 480
 		self.caption = "Snake"
@@ -22,15 +23,15 @@ class GameWindow < Gosu::Window
 			@snake.direction = "left"
 		end
 
-		if (button_down? Gosu::KbRight) && (@snake.direction != "left")
+		if (button_down? Gosu::KbRight) && @snake.direction != "left"
 			@snake.direction = "right"
 		end
 
-		if (button_down? Gosu::KbUp) && (@snake.direction != "down")
+		if (button_down? Gosu::KbUp) && @snake.direction != "down"
 			@snake.direction = "up"
 		end
 
-		if (button_down? Gosu::KbDown) && (@snake.direction != "up")
+		if (button_down? Gosu::KbDown) && @snake.direction != "up"
 			@snake.direction = "down"
 		end
 
@@ -39,14 +40,15 @@ class GameWindow < Gosu::Window
 		end
 
 		if @snake.ate_apple?(@apple)
-			@apple = Apple.new(self)
-			@score += 10
-			@snake.length += 10
+      
+			@apple = Apple.new(self)   # generate a new apple
+			@score += 10               # add 10 points to the score
+			@snake.length += 10        # increase the snake's length
 			
 			# 11 because we subtract one at the end of the method anyway
 			@snake.ticker += 11
 			if @score % 100 == 0
-				@snake.speed += 0.5
+				@snake.speed += 1.5
 			end
 		end
 
@@ -58,7 +60,7 @@ class GameWindow < Gosu::Window
 			@new_game = Gosu::Font.new(self, 'Ubuntu Sans', 32)
 		end
 
-		if @new_game and button_down? Gosu::KbReturn
+		if @new_game && (button_down? Gosu::KbReturn)
 			@new_game = nil
 			@score = 0
 			@snake = Snake.new(self)
@@ -80,5 +82,6 @@ class GameWindow < Gosu::Window
 			@apple.draw
 			@text_object.draw("Score: #{@score}",5,5,0)
 		end
+
 	end
 end

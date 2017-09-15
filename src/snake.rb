@@ -18,15 +18,12 @@ attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
   end
 
 	def draw
-		# Draw the segments
-		@segments.each { |s| s.draw }
+		@segments.each { |segment| segment.draw }
 	end
 
 	def update_position
-
 		add_segment
-		@segments.shift(1) unless @ticker > 0
-
+		@segments.shift unless @ticker > 0
 	end
 
 	def add_segment
@@ -61,36 +58,33 @@ attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
 	end
 
 	def ate_apple?(apple)
-		if Gosu::distance(@head_segment.xpos, @head_segment.ypos, apple.xpos, apple.ypos) < 10
-			return true
-		end
+		true if Gosu::distance(@head_segment.xpos, @head_segment.ypos, apple.xpos, apple.ypos) < 10
 	end
 
 	def hit_self?
 		segments = Array.new(@segments)
+
 		if segments.length > 21
 			# Remove the head segment from consideration
 			segments.pop((10 * @speed))
-			segments.each do |s|
-				if Gosu::distance(@head_segment.xpos, @head_segment.ypos, s.xpos, s.ypos) < 11
-					puts "true, head: #{@head_segment.xpos}, #{@head_segment.ypos}; seg: #{s.xpos}, #{s.ypos}"
+			segments.each do |segment|
+				if Gosu::distance(@head_segment.xpos, @head_segment.ypos, segment.xpos, segment.ypos) < 11
+					puts "true, head: #{@head_segment.xpos}, #{@head_segment.ypos}; seg: #{segment.xpos}, #{segment.ypos}"
 					return true
-				else
-					next
-				end
+        end
 			end
-			return false
+			false
 		end
 
 	end
 
 	def outside_bounds?
-		if @head_segment.xpos < 0 or @head_segment.xpos > 630
-			return true
-		elsif @head_segment.ypos < 0 or @head_segment.ypos > 470
-			return true
+		if @head_segment.xpos < 0 || @head_segment.xpos > 630
+			true
+		elsif @head_segment.ypos < 0 || @head_segment.ypos > 470
+			true
 		else
-			return false
+			false
 		end
 	end
 
