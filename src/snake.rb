@@ -1,14 +1,15 @@
 class Snake
 
-attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
+attr_reader :direction, :x, :y, :speed, :length, :segments, :ticker
+attr_writer :direction, :x, :y, :speed, :length, :segments, :ticker
 
 	def initialize(window)
 		@window = window
-		@xpos = 200
-		@ypos = 200
+		@x = 200
+		@y = 200
 		@segments = []
 		@direction = "right"
-		@head_segment = Segment.new(self, @window, [@xpos, @ypos])
+		@head_segment = Segment.new(self, @window, [@x, @y])
 		@segments.push(@head_segment)
 		@speed = 2
 		@length = 1
@@ -29,27 +30,27 @@ attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
 	def add_segment
 		
 		if @direction == "left"
-			xpos = @head_segment.xpos - @speed
-			ypos = @head_segment.ypos
-			new_segment = Segment.new(self, @window, [xpos, ypos])
+			x = @head_segment.x - @speed
+			y = @head_segment.y
+			new_segment = Segment.new(self, @window, [x, y])
 		end
 
 		if @direction == "right"
-			xpos = @head_segment.xpos + @speed
-			ypos = @head_segment.ypos
-			new_segment = Segment.new(self, @window, [xpos, ypos])
+			x = @head_segment.x + @speed
+			y = @head_segment.y
+			new_segment = Segment.new(self, @window, [x, y])
 		end
 
 		if @direction == "up"
-			xpos = @head_segment.xpos
-			ypos = @head_segment.ypos - @speed
-			new_segment = Segment.new(self, @window, [xpos, ypos])
+			x = @head_segment.x
+			y = @head_segment.y - @speed
+			new_segment = Segment.new(self, @window, [x, y])
 		end
 
 		if @direction == "down"
-			xpos = @head_segment.xpos
-			ypos = @head_segment.ypos + @speed
-			new_segment = Segment.new(self, @window, [xpos, ypos])
+			x = @head_segment.x
+			y = @head_segment.y + @speed
+			new_segment = Segment.new(self, @window, [x, y])
 		end
 
 		@head_segment = new_segment
@@ -58,7 +59,7 @@ attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
 	end
 
 	def ate_apple?(apple)
-		true if Gosu::distance(@head_segment.xpos, @head_segment.ypos, apple.xpos, apple.ypos) < 10
+		true if Gosu::distance(@head_segment.x, @head_segment.y, apple.x, apple.y) < 10
 	end
 
 	def hit_self?
@@ -68,8 +69,8 @@ attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
 			# Remove the head segment from consideration
 			segments.pop((10 * @speed))
 			segments.each do |segment|
-				if Gosu::distance(@head_segment.xpos, @head_segment.ypos, segment.xpos, segment.ypos) < 11
-					puts "true, head: #{@head_segment.xpos}, #{@head_segment.ypos}; seg: #{segment.xpos}, #{segment.ypos}"
+				if Gosu::distance(@head_segment.x, @head_segment.y, segment.x, segment.y) < 11
+					puts "true, head: #{@head_segment.x}, #{@head_segment.y}; seg: #{segment.x}, #{segment.y}"
 					return true
         end
 			end
@@ -79,9 +80,9 @@ attr_accessor :direction, :xpos, :ypos, :speed, :length, :segments, :ticker
 	end
 
 	def outside_bounds?
-		if @head_segment.xpos < 0 || @head_segment.xpos > 630
+		if @head_segment.x < 0 || @head_segment.x > 630
 			true
-		elsif @head_segment.ypos < 0 || @head_segment.ypos > 470
+		elsif @head_segment.y < 0 || @head_segment.y > 470
 			true
 		else
 			false

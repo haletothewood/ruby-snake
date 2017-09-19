@@ -1,17 +1,19 @@
 class Segment
 
-	attr_accessor :xpos, :ypos
+	attr_reader :x, :y
+	attr_writer :x, :y
+
 	def initialize(snake, window, position)
 		@window = window
-		@xpos = position[0]
-		@ypos = position[1]
+		@x = position[0]
+		@y = position[1]
 	end
 
 	def draw
-		@window.draw_quad(@xpos, @ypos,           Gosu::Color::GREEN,
-                      @xpos + 10, @ypos,      Gosu::Color::GREEN,
-                      @xpos, @ypos + 10,      Gosu::Color::GREEN,
-                      @xpos + 10, @ypos + 10, Gosu::Color::GREEN
+		@window.draw_quad(@x, @y,           Gosu::Color::GREEN,
+                      @x + 10, @y,      Gosu::Color::GREEN,
+                      @x, @y + 10,      Gosu::Color::GREEN,
+                      @x + 10, @y + 10, Gosu::Color::GREEN
                      )
 	end
 
