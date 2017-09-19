@@ -9,7 +9,7 @@ class GameWindow < Gosu::Window
   # what does a game of snake always have?
 	def initialize
 		super 640, 480
-		self.caption = "Snake"
+		self.caption = "🐍"
 		@snake = Snake.new(self)
 		@apple = Apple.new(self)
 		@score = 0
