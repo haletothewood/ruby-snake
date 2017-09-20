@@ -9,11 +9,12 @@ class GameWindow < Gosu::Window
   # what does a game of snake always have?
 	def initialize
 		super 640, 480
-		self.caption = "🐍"
+		self.caption = "Space 🐍"
 		@snake = Snake.new(self)
 		@apple = Apple.new(self)
 		@score = 0
-		@text_object = Gosu::Font.new(self, 'Ubuntu Sans', 32)
+		@text_object = Gosu::Font.new(self, 'Space Mono', 32)
+    		@background_image = Gosu::Image.new("media/space_background.png")
 	end
 
 	def update
@@ -59,11 +60,11 @@ class GameWindow < Gosu::Window
       		end
 
 		if @snake.hit_self?
-			@new_game = Gosu::Font.new(self, 'Ubuntu Sans', 32)
+			@new_game = Gosu::Font.new(self, 'Space Mono', 32)
 		end
 
 		if @snake.outside_bounds?
-			@new_game = Gosu::Font.new(self, 'Ubuntu Sans', 32)
+			@new_game = Gosu::Font.new(self, 'Space Mono', 32)
 		end
 
 		if @new_game && (button_down? Gosu::KbReturn)
