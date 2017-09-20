@@ -40,17 +40,23 @@ class GameWindow < Gosu::Window
 		end
 
 		if @snake.ate_apple?(@apple)
-      
-			@apple = Apple.new(self)   # generate a new apple
-			@score += 10               # add 10 points to the score
-			@snake.length += 10        # increase the snake's length
-			
-			# 11 because we subtract one at the end of the method anyway
-			@snake.ticker += 11
-			if @score % 100 == 0
-				@snake.speed += 1.5
-			end
-		end
+
+      			@apple = Apple.new(self) # generates a new apple
+
+        		if @apple.x != @snake.x..(@snake.x+10)
+      	  			@score += 10               # add 10 points to the score
+      	   			@snake.length += 10        # increase the snake's length
+
+      	   			# 11 because we subtract one at the end of the method anyway
+      	   			@snake.ticker += 11
+        		else
+          			@snake.ate_apple?(@apple)
+       			end
+
+      			if @score % 100 == 0 # increase speed each time score increases by 100
+      				@snake.speed += 1.5
+      			end
+      		end
 
 		if @snake.hit_self?
 			@new_game = Gosu::Font.new(self, 'Ubuntu Sans', 32)
