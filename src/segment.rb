@@ -1,6 +1,6 @@
 class Segment
 
-	attr_reader :x, :y
+	attr_reader :x, :y, :position
 	attr_writer :x, :y
 
 	def initialize(snake, window, position)

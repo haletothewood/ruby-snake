@@ -1,6 +1,6 @@
 class Snake
 
-attr_reader :direction, :x, :y, :speed, :length, :segments, :ticker
+attr_reader :direction, :x, :y, :speed, :length, :segments, :ticker, :head_segment
 attr_writer :direction, :x, :y, :speed, :length, :segments, :ticker
 
 	def initialize(window)
@@ -28,7 +28,7 @@ attr_writer :direction, :x, :y, :speed, :length, :segments, :ticker
 	end
 
 	def add_segment
-		
+
 		if @direction == "left"
 			x = @head_segment.x - @speed
 			y = @head_segment.y
